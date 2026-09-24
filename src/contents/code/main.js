@@ -6,6 +6,8 @@
     Ctrl+Shift+Meta+Right  — same for the right edge.
     Ctrl+Shift+Meta+Return — center the window: 2/3 of the screen width,
                              full height.
+    Ctrl+Shift+Meta+Space  — maximize the window; a repeated press restores
+                             its previous size (toggle).
 
     The cycle step is derived from the window's actual geometry (no state is
     stored): if the window is already in one of the target positions, the
@@ -13,7 +15,7 @@
     laid out within the screen it currently resides on.
 */
 
-const VERSION = "1.1.0";
+const VERSION = "1.2.0";
 
 // Gap between the window and the work-area edges, px (0 = flush, like quick tiles)
 const GAP = 0;
@@ -99,6 +101,17 @@ function center() {
     });
 }
 
+function toggleMaximize() {
+    const win = workspace.activeWindow;
+    if (!manageable(win)) {
+        return;
+    }
+    // maximizeMode is the KWin::MaximizeMode enum as a number; the enum is
+    // not exported to scripts, so compare with MaximizeFull (Vertical|Horizontal) directly
+    const maximized = win.maximizeMode === 3;
+    win.setMaximize(!maximized, !maximized);
+}
+
 registerShortcut(
     "Cycle Tiling: Left",
     "Cycle Tiling: tile window to the left edge (cycle 1/2 → 1/3 → 2/3)",
@@ -116,5 +129,11 @@ registerShortcut(
     "Cycle Tiling: center window (2/3 width and full height)",
     "Ctrl+Shift+Meta+Return",
     center);
+
+registerShortcut(
+    "Cycle Tiling: Maximize",
+    "Cycle Tiling: toggle maximize window (fill the whole screen)",
+    "Ctrl+Shift+Meta+Space",
+    toggleMaximize);
 
 console.info("cycleTiling: loaded v" + VERSION);

@@ -70,6 +70,14 @@ case "$C" in
     *) echo "Center: keeping user-defined binding '$C'" ;;
 esac
 
+M=$(current_binding 'Cycle Tiling: Maximize')
+case "$M" in
+    ""|Ctrl+Shift+Meta+Space)
+        kwriteconfig6 --file kglobalshortcutsrc --group kwin --key 'Cycle Tiling: Maximize' \
+            'Ctrl+Shift+Meta+Space,none,Cycle Tiling: toggle maximize window (fill the whole screen)' ;;
+    *) echo "Maximize: keeping user-defined binding '$M'" ;;
+esac
+
 # Disable the built-in Meta+Left/Right quick tiles (half-screen tiling) —
 # Cycle Tiling replaces them. Left untouched if the user rebound them.
 QL=$(current_binding 'Window Quick Tile Left')
@@ -94,6 +102,6 @@ for key in 'Switch One Desktop to the Left' 'Switch One Desktop to the Right'; d
     fi
 done
 
-echo "Installed. Shortcuts: Ctrl+Shift+Meta+Left / Ctrl+Shift+Meta+Right / Ctrl+Shift+Meta+Return"
+echo "Installed. Shortcuts: Ctrl+Shift+Meta+Left / Ctrl+Shift+Meta+Right / Ctrl+Shift+Meta+Return / Ctrl+Shift+Meta+Space"
 echo "Shortcut changes and disabling of Meta+Left/Right take effect on the next login."
 echo "Script errors (if something does not work): journalctl --user -b --no-pager | grep cycleTiling"

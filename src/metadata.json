@@ -6,12 +6,12 @@
                 "Name": "nebm51"
             }
         ],
-        "Description": "Cycle-tile the active window to the left/right screen edge (1/2, 1/3, 2/3 of the screen) or center it (2/3 width, full height)",
+        "Description": "Cycle-tile the active window to the left/right screen edge (1/2, 1/3, 2/3 of the screen), center it (2/3 width, full height) or maximize/restore it",
         "Icon": "preferences-system-windows",
         "Id": "cycleTiling",
         "License": "MIT",
         "Name": "Cycle Tiling",
-        "Version": "1.1.0"
+        "Version": "1.2.0"
     },
     "X-Plasma-API": "javascript"
 }

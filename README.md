@@ -12,6 +12,7 @@ KWin script.
 | `Ctrl+Shift+Super+Left` | Move the window to the left screen edge. Repeated presses cycle its width: **1/2 → 1/3 → 2/3 → 1/2 → ...** |
 | `Ctrl+Shift+Super+Right` | Same for the right screen edge: **1/2 → 1/3 → 2/3 → 1/2 → ...** |
 | `Ctrl+Shift+Super+Enter` | Center the window: **2/3 of the screen width**, **full height** |
+| `Ctrl+Shift+Super+Space` | Maximize the window (fill the whole work area). Press again to **restore** its previous size |
 
 Notes:
 
@@ -23,6 +24,9 @@ Notes:
   work area is used, so panels are never overlapped).
 - Maximized windows and windows attached to KWin tiles (quick/custom tiling)
   are automatically detached and given the new geometry.
+- Maximize fills the work area on the window's current monitor (panels are
+  never overlapped, like with a normal maximize); a second press restores the
+  geometry the window had before being maximized.
 
 ## Installation
 
@@ -51,7 +55,7 @@ in *System Settings → Shortcuts* or via `uninstall.sh`.
 
 ## Rebinding shortcuts
 
-*System Settings → Shortcuts*, search for "Cycle Tiling" — three entries
+*System Settings → Shortcuts*, search for "Cycle Tiling" — four entries
 named like "Cycle Tiling: tile window to the left edge...". Changes apply
 immediately.
 
@@ -75,7 +79,7 @@ The script logs to the journal:
 journalctl --user -b --no-pager | grep cycleTiling
 ```
 
-On load it prints `cycleTiling: loaded v1.1.0`. If the script is enabled but
+On load it prints `cycleTiling: loaded v1.2.0`. If the script is enabled but
 the shortcuts do nothing, check that the combinations are not grabbed by
 another application (*System Settings → Shortcuts*).
 
