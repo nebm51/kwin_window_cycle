@@ -3,6 +3,8 @@
 A window tiling utility for KDE Plasma 6 (Wayland and X11), implemented as a
 KWin script.
 
+![demo](assets/demo.gif)
+
 ## Shortcuts
 
 | Shortcut | Action |
